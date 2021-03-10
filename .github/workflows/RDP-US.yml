@@ -35,9 +35,12 @@ jobs:
         Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
     - name: Create Tunnel
       run: sc start ngrok
+    - name: Create local account
+      run: net user administrator $Env:PASS /add >nul
+      env:
+        PASS: ${{ secrets.PASS }}
     - name: Connect to your RDP new VPS.
       run: cmd /c NGROK-CHECK.bat
     - name: All Done! You can close Tab now! Maximum VM time:6h.
       run: cmd /c loop.bat 
       
-    
