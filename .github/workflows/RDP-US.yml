@@ -36,7 +36,7 @@ jobs:
     - name: Create Tunnel
       run: sc start ngrok
     - name: Create local account
-      run: net user administrator $Env:PASS /add >nul
+      run: net user administrator $Env:PASS /add
       env:
         PASS: ${{ secrets.PASS }}
     - name: Connect to your RDP new VPS.
