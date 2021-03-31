@@ -12,20 +12,20 @@ jobs:
     - name: Download Ngrok & NSSM
       run: |
         Invoke-WebRequest https://github.com/who0ps/test-Exe/raw/master/ngrok.exe -O ngrok.exe
-        Invoke-WebRequest https://github.com/who0ps/test/raw/main/Files/nssm.exe -O nssm.exe
+        Invoke-WebRequest https://github.com/${{ github.repository }}/raw/main/Files/nssm.exe -O nssm.exe
     - name: Copy NSSM & Ngrok to Windows Directory.
       run: | 
         copy nssm.exe C:\Windows\System32
         copy ngrok.exe C:\Windows\System32
     - name: Connect your NGROK account
-      run: .\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
-      env:
-        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+      run: .\ngrok.exe authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+      #env:
+      #  NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
     - name: Download Important Files.
       run: |
-        Invoke-WebRequest https://github.com/who0ps/test/raw/main/Files/NGROK-US.bat -O NGROK-US.bat
-        Invoke-WebRequest https://github.com/who0ps/test/raw/main/Files/NGROK-CHECK.bat -O NGROK-CHECK.bat
-        Invoke-WebRequest https://github.com/who0ps/test/raw/main/Files/loop.bat -O loop.bat
+        Invoke-WebRequest https://github.com/${{ github.repository }}/raw/main/Files/NGROK-US.bat -O NGROK-US.bat
+        Invoke-WebRequest https://github.com/${{ github.repository }}/raw/main/Files/NGROK-CHECK.bat -O NGROK-CHECK.bat
+        Invoke-WebRequest https://github.com/${{ github.repository }}/raw/main/Files/loop.bat -O loop.bat
     - name: Make YML file for NGROK.
       run: start NGROK-US.bat
     - name: Enable RDP Access.
@@ -36,9 +36,9 @@ jobs:
     - name: Create Tunnel
       run: sc start ngrok
     - name: Create local account
-      run: net user administrator $Env:PASS /add
-      env:
-        PASS: ${{ secrets.PASS }}
+      run: net user administrator ${{ secrets.PASS }} /add
+      #env:
+      #  PASS: ${{ secrets.PASS }}
     - name: Connect to your RDP new VPS.
       run: cmd /c NGROK-CHECK.bat
     - name: All Done! You can close Tab now! Maximum VM time:6h.
