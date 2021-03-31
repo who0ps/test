@@ -11,3 +11,4 @@ jobs:
         run: echo $Env:REPO_NAME
         env:
           REPO_NAME: ${{ github.repository.name }}
+        run: echo ${{ github.repository }}
