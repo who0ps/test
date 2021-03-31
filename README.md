@@ -1,4 +1,4 @@
-Free VPS (Windows Server 2019, 7Gb ram, 250 Gb SSD)
+Free tempoary VPS from Github (Windows Server 2019, 2x2.6 Ghz, 7GB ram, 250GB SSD)
 
 1. reg [Ngrok](https://ngrok.com/)
 2. fork repo
