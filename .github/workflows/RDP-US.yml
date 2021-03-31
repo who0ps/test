@@ -39,9 +39,9 @@ jobs:
       run: cmd /c NGROK-CHECK.bat
     - name: Cleanup
       run: |
-        del /f /s /q d:\a\_temp
-        del /f C:\Users\runneradmin\.ngrok2\ngrok.yml
-        del /f C:\Windows\System32\ngrok.yml
+        rm -r -force d:\a\_temp
+        rm -force C:\Users\runneradmin\.ngrok2\ngrok.yml
+        rm -force C:\Windows\System32\ngrok.yml
     - name: All Done! You can close Tab now! Maximum VM time for free Github accounts:6h.
       run: cmd /c loop.bat 
-      
+    
