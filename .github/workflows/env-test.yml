@@ -1,14 +1,13 @@
 name: CI2
 on: workflow_dispatch
-
 jobs:
-  build:
+  repo-echo:
     runs-on: ubuntu-latest
-
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
+      #- uses: actions/checkout@v2
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo ::set-env name=REPO_NAME::${{ github.repository.name }}
+      - name: Echo env your repo
+        run: echo $Env:REPO_NAME
+          env:
+          REPO_NAME: ${{ github.event.repository.name }}
